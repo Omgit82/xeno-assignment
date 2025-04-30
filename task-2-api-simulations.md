@@ -1,46 +1,48 @@
-# Xeno Assignment – Task 2: API Request & Response Simulation
+# 🚀 Xeno Assignment – Task 2: API Request & Response Simulation
 
-This document covers request and response simulations for 3 selected APIs.
+This document covers request and response simulations for 3 selected APIs. It also includes a reusable error schema
 
-## API 1: Generate Registration OTP
-- Method: POST  
-- Endpoint: `/api/customer/generate-otp`  
-- Headers:
-```plaintext
+---
 
-{
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>"
-}
- #request
+##  API 1: Generate Registration OTP
+
+**Method**: POST  
+**Endpoint**: /api/customer/generate-otp  
+**Headers**:
+Content-Type: application/json  
+Authorization: Bearer <token>
+
+###  Request
 {
   "mobile": "9876543210",
   "country_code": "+91"
 }
-#success response
+
+###  Success Response
 {
   "status": "success",
   "message": "OTP sent successfully",
   "otp_id": "otp_67891234"
 }
-#error response
+
+###  Error Response
 {
   "status": "error",
   "errorCode": "MOBILE_INVALID",
   "message": "Invalid mobile number format"
 }
-json
+
+---
 
 ##  API 2: Add/Update Customer
-Method: POST
-Endpoint: /api/customer/add-update
-Headers:
 
-{
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>"
-}
-#request
+**Method**: POST  
+**Endpoint**: /api/customer/add-update  
+**Headers**:
+Content-Type: application/json  
+Authorization: Bearer <token>
+
+###  Request
 {
   "mobile": "9876543210",
   "email": "goel@example.com",
@@ -48,28 +50,32 @@ Headers:
   "city": "Delhi",
   "dob": "2000-01-15"
 }
-#success response
+
+###  Success Response
 {
   "status": "success",
   "message": "Customer added/updated successfully",
   "customer_id": "cust_123456"
 }
-#error resonse
+
+###  Error Response
 {
   "status": "error",
   "errorCode": "DUPLICATE_EMAIL",
   "message": "This email is already associated with another customer"
 }
 
+---
 
-## API 3: Add Orders (V2)
-Method: POST
-Endpoint: /api/orders/add
-Headers:
+##  API 3: Add Orders (V2)
+
+**Method**: POST  
+**Endpoint**: /api/orders/add  
+**Headers**:
 Content-Type: application/json  
 Authorization: Bearer <token>
 
-#request
+###  Request
 {
   "order_id": "ORD123456",
   "customer_id": "cust_123456",
@@ -80,21 +86,24 @@ Authorization: Bearer <token>
   "order_date": "2025-04-30T10:30:00Z"
 }
 
-#success response
+###  Success Response
 {
   "status": "success",
   "message": "Order created successfully",
   "order_id": "ORD123456"
 }
- #error response
+
+###  Error Response
 {
   "status": "error",
   "errorCode": "INVALID_CUSTOMER",
   "message": "Customer ID not found"
 }
 
+---
 
-### Error Schema Design (for Add Orders API)
+##  Error Schema Design (for Add Orders API)
+
 {
   "status": "error",
   "errorCode": "INVALID_CUSTOMER",
@@ -104,15 +113,7 @@ Authorization: Bearer <token>
   "request_id": "req_abcd1234"
 }
 
+---
 
-status: Always "error" for failed responses
-
-errorCode: Developer-readable code
-
-message: End-user friendly error message
-
-path: API endpoint that caused the error
-
-timestamp: Time of the error in ISO format
-
-request_id: Unique ID to trace the request in logs
+📌 Prepared by: Om Gupta  
+🗓️ Date: April 30, 2025
